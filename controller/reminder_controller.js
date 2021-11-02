@@ -42,10 +42,21 @@ let remindersController = {
 
   update: (req, res) => {
     // implement this code
+    let reminderToUpdate = req.params.id;
+    let reminder = {
+      id: reminderToUpdate - 1,
+      title: req.body.title,
+      description: req.body.description,
+      completed: req.body.completed,
+    }
+    let reminderId = reminderToUpdate - 1
+    database.cindy.reminders[reminderId] = reminder
+    res.render("reminder/single-reminder", { reminderItem: database.cindy.reminders[reminderId] })
   },
 
   delete: (req, res) => {
     // Implement this code
+    
   },
 };
 
