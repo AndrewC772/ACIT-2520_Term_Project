@@ -53,9 +53,9 @@ let remindersController = {
 		} else {
 			searchResult.completed = false
 		}
-		res.render("reminder/index", { reminders: database.cindy.reminders})
+		res.redirect("/reminders", { reminders: database.cindy.reminders})
 	} else {
-		res.render("reminder/index", { reminders: database.cindy.reminders})
+		res.redirect("/reminders", { reminders: database.cindy.reminders})
 	}
   },
 
@@ -66,9 +66,9 @@ let remindersController = {
 	if (searchResult != undefined) {
 		let Array_Postion = database.cindy.reminders.indexOf(searchResult)
 		database.cindy.reminders.splice(Array_Postion, 1)
-		res.render("reminder/index", { reminders: database.cindy.reminders})
+		res.render("/reminders", { reminders: database.cindy.reminders})
 	} else {
-		res.render("reminder/index", { reminders: database.cindy.reminders})
+		res.render("/reminders", { reminders: database.cindy.reminders})
 	}
   },
 };

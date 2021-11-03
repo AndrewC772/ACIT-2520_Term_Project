@@ -19,7 +19,7 @@ app.get("/reminders", reminderController.list);
 
 app.get("/reminder/new", reminderController.new);
 
-app.get("/reminder/:id", reminderController.listOne);
+app.get("/reminder/:id/:id2", reminderController.listOne);
 
 app.get("/reminder/:id/edit", reminderController.edit);
 
