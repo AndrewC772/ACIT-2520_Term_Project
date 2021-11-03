@@ -42,10 +42,34 @@ let remindersController = {
 
   update: (req, res) => {
     // implement this code
+	let reminderToFind = req.params.id
+	let searchResult = Database.cindy.reminders.find(reminders => reminders.id == reminderToFind )
+	if (searchResult != undefined) {
+		searchResult.title = req.body.title
+		searchResult.description = req.body.description
+		console.log(req.body.completed, typeof(req.body.completed))
+		if (req.body.completed == 'true') {
+			searchResult.completed = true
+		} else {
+			searchResult.completed = false
+		}
+		res.render("reminder/index", { reminders: Database.cindy.reminders})
+	} else {
+		res.render("reminder/index", { reminders: Database.cindy.reminders})
+	}
   },
 
   delete: (req, res) => {
     // Implement this code
+	let reminderToFind = req.params.id
+	let searchResult = Database.cindy.reminders.find(reminders => reminders.id == reminderToFind )
+	if (searchResult != undefined) {
+		let Array_Postion = Database.cindy.reminders.indexOf(searchResult)
+		Database.cindy.reminders.splice(Array_Postion, 1)
+		res.render("reminder/index", { reminders: Database.cindy.reminders})
+	} else {
+		res.render("reminder/index", { reminders: Database.cindy.reminders})
+	}
   },
 };
 
