@@ -20,6 +20,13 @@ let Database = [
     password: "jonathan123!",
     reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}]
   },
+  {
+    id: 4,
+    name: "test",
+    email: "test@test",
+    password: "test",
+    reminders: [{id: 1, title: "test1", description: "test1", completed: false}, {id: 1, title: "test2", description: "test1", completed: true}]
+  }
 ]
 
 module.exports = Database;
