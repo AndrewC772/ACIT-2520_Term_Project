@@ -29,7 +29,7 @@ let remindersController = {
       completed: false,
     };
     database.cindy.reminders.push(reminder);
-    res.redirect("/reminders");
+    res.redirect("/reminder");
   },
 
   edit: (req, res) => {
@@ -53,24 +53,24 @@ let remindersController = {
 		} else {
 			searchResult.completed = false
 		}
-		res.redirect("/reminders", { reminders: database.cindy.reminders})
+		res.redirect("/reminder", { reminders: database.cindy.reminders})
 	} else {
-		res.redirect("/reminders", { reminders: database.cindy.reminders})
+		res.redirect("/reminder", { reminders: database.cindy.reminders})
 	}
   },
 
   delete: (req, res) => {
-    // Implement this code
 	let reminderToFind = req.params.id
 	let searchResult = database.cindy.reminders.find(reminders => reminders.id == reminderToFind )
 	if (searchResult != undefined) {
 		let Array_Postion = database.cindy.reminders.indexOf(searchResult)
 		database.cindy.reminders.splice(Array_Postion, 1)
-		res.render("/reminders", { reminders: database.cindy.reminders})
+		res.render("/reminder", { reminders: database.cindy.reminders})
 	} else {
-		res.render("/reminders", { reminders: database.cindy.reminders})
+		res.render("/reminder", { reminders: database.cindy.reminders})
 	}
   },
+  
 };
 
 module.exports = remindersController;
