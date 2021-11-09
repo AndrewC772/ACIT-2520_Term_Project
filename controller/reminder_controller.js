@@ -47,7 +47,6 @@ let remindersController = {
 	if (searchResult != undefined) {
 		searchResult.title = req.body.title
 		searchResult.description = req.body.description
-		console.log(req.body.completed, typeof(req.body.completed))
 		if (req.body.completed == 'true') {
 			searchResult.completed = true
 		} else {

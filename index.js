@@ -1,17 +1,36 @@
 const express = require("express");
-const app = express();
+const expressLayouts = require("express-ejs-layouts");
+const session = require("express-session")
 const path = require("path");
-const ejsLayouts = require("express-ejs-layouts");
-const reminderController = require("./controller/reminder_controller");
-const authController = require("./controller/auth_controller");
+const port = process.env.port || 8081
 
+const app = express();
+
+app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: false,
+  })
+);
+
+const passport = require("./middleware/passport/");
+const authRoute = require("./routes/authRoute");
+const indexRoute = require("./routes/indexRoute");
+
+app.use(express.json());
+app.use(expressLayouts);
+app.use(express.urlencoded({ extended: true }))
+app.use(passport.initialzie());
+app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 
 app.use(ejsLayouts);
 
-app.set("view engine", "ejs");
+
 
 // Routes start here
 
