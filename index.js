@@ -26,22 +26,31 @@ app.use(express.urlencoded({ extended: true }))
 app.use(passport.initialzie());
 app.use(passport.session());
 
-app.use(express.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+  console.log(`User details are: `);
+  console.log(req.user);
 
-app.use(ejsLayouts);
+  console.log("Entire session object:");
+  console.log(req.session);
 
-
+  console.log(`Session details are: `);
+  console.log(req.session.passport);
+  next();
+});
 
 // Routes start here
 
+router.get("/login", (req, res) => forwardAuthenticated, (req, res) => res.render("login"));
+
+router.post("/login", (req, res) => {
+  // check the database to see if a user exists with the username and password
+  
+})
+
 app.get("/reminders", reminderController.list);
-
 app.get("/reminder/new", reminderController.new);
-
 app.get("/reminder/:id/:id2", reminderController.listOne);
-
 app.get("/reminder/:id/edit", reminderController.edit);
-
 app.post("/reminder/", reminderController.create);
 
 // Implement this yourself

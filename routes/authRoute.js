@@ -14,3 +14,8 @@ router.post(
         failureRedirect: "/auth/login",
     })
 )
+
+router.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/auth/login")
+})
