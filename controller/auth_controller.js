@@ -27,7 +27,7 @@ let authController = {
   registerSubmit: (req, res) => {
     // implement
     console.log(req.body)
-    let new_database_id = 0
+    let new_database_id = 1
     for (let id of database) {
       if (id > new_database_id ){
         console.log(id, new_database_id)
