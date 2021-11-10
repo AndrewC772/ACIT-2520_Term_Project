@@ -34,6 +34,9 @@ let authController = {
         new_database_id = id + 1
       }
     }
+    // if (userModel.findOne(req.body.email)) {
+    //     console.log("This email already exists")
+    // }
     database.push(
       {
         id: new_database_id,
