@@ -1,8 +1,11 @@
 let database = require("../database");
+const { ensureAuthenticated, forwardAuthenticated } = require("../middleware/checkAuth");
 const passport = require("../middleware/passport");
+let userController = require("./userController")
 
 let authController = {
   login: (req, res) => {
+    console.log("Login page GET works")
     res.render("auth/login");
   },
 
@@ -12,12 +15,12 @@ let authController = {
 
   loginSubmit: (req, res) => {
     // implement
-    console.log("LoginSubmit Triggered")
-    res.send("welcome")
-    // passport.authenticate("local", {
-    //   successRedirect: "/reminders",
-    //   failureRedirect: "/login",
-    // })
+    console.log(req.body)
+    console.log(userController.getUserByEmailIdAndPassword(req.body.email, req.body.password))
+    passport.authenticate("local", {
+      successRedirect: "/reminders",
+      failureRedirect: "/login",
+    })
   },
 
   registerSubmit: (req, res) => {

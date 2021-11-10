@@ -35,7 +35,7 @@ app.use(passport.session());
 
 // Routes start here
 
-app.get("/reminders", ensureAuthenticated,  reminderController.list);
+app.get("/reminders",  reminderController.list);
 
 app.get("/reminder/new", reminderController.new);
 
@@ -54,8 +54,8 @@ app.post("/reminder/delete/:id", reminderController.delete);
 // Fix this to work with passport! The registration does not need to work, you can use the fake database for this.
 app.get("/register", authController.register);
 app.get("/login", forwardAuthenticated,  authController.login);
+app.post("/login", authController.loginSubmit);
 app.post("/register", authController.registerSubmit);
-app.post("/login", forwardAuthenticated, authController.loginSubmit);
 
 app.listen(3001, function () {
   console.log(
