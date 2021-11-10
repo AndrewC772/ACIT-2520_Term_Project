@@ -7,7 +7,7 @@ const localLogin = new LocalStrategy(
     passwordField: "password",
   },
   (email, password, done) => {
-    console.log(email, password, "checked")
+    // console.log(email, password, "checked")
     const user = userController.getUserByEmailIdAndPassword(email, password);
     return user
       ? done(null, user)
@@ -19,12 +19,12 @@ const localLogin = new LocalStrategy(
 
 // req.session.passport.user
 passport.serializeUser(function (user, done) {
-  console.log(user, "checked")
+  // console.log(user, "checked")
   done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
-  console.log(id, "checked")
+  // console.log(id, "checked")
   let user = userController.getUserById(id);
   if (user) {
     done(null, user);
