@@ -29,7 +29,7 @@ let authController = {
     console.log(req.body)
     let new_database_id = 1
     for (let id of database) {
-      if (id > new_database_id ){
+      if (id >= new_database_id ){
         console.log(id, new_database_id)
         new_database_id = id + 1
       }
