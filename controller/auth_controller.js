@@ -5,7 +5,7 @@ let userController = require("./userController")
 
 let authController = {
   login: (req, res) => {
-    console.log("Login page GET works")
+    // console.log("Login page GET works")
     res.render("auth/login");
   },
 
@@ -15,8 +15,8 @@ let authController = {
 
   loginSubmit: (req, res) => {
     // implement
-    console.log(req.body)
-    console.log(userController.getUserByEmailIdAndPassword(req.body.email, req.body.password))
+    // console.log(req.body)
+    // console.log(userController.getUserByEmailIdAndPassword(req.body.email, req.body.password))
     passport.authenticate("local", {
       successRedirect: "/reminders",
       failureRedirect: "/login",

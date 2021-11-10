@@ -17,6 +17,7 @@ const localLogin = new LocalStrategy(
   }
 );
 
+// req.session.passport.user
 passport.serializeUser(function (user, done) {
   console.log(user, "checked")
   done(null, user.id);
