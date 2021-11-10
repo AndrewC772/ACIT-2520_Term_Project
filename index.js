@@ -20,10 +20,11 @@ const passport = require("./middleware/passport/");
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
 
+// Middleware for express
 app.use(express.json());
 app.use(expressLayouts);
-app.use(express.urlencoded({ extended: true }))
-app.use(passport.initialzie());
+app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
@@ -37,6 +38,12 @@ app.use((req, res, next) => {
   console.log(req.session.passport);
   next();
 });
+
+app.use("/", indexRoute);
+app.use("/auth", authRoute);
+
+
+
 
 // Routes start here
 
@@ -69,4 +76,8 @@ app.listen(3001, function () {
   console.log(
     "Server running. Visit: localhost:3001/reminders in your browser 🚀"
   );
+});
+
+app.listen(port, () => {
+  console.log(`🚀 Server has started on port ${port}`);
 });
