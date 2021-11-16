@@ -9,7 +9,8 @@ const router = express.Router();
 // The forwardAuthenticated checks that they are not logged in
 // and the next allows you to proceed with next() to res.render("login")
 router.get("/login", forwardAuthenticated, (req, res) => res.render("auth/login"));
-router.get("/login", forwardAuthenticated, (req, res) => res.render("auth/register"));
+router.get("/register", forwardAuthenticated, (req, res) => res.render("auth/register"));
+router.get("/github", passport.authenticate("github"))
 
 router.post(
   "/login",
