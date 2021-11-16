@@ -6,7 +6,8 @@ const ejsLayouts = require("express-ejs-layouts");
 const passport = require("./middleware/passport");
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
-const { forwardAuthenticated, ensureAuthenticated } = require("./middleware/checkAuth")
+const { forwardAuthenticated, ensureAuthenticated } = require("./middleware/checkAuth");
+const adminRoute = require("./routes/adminRoute");
 
 
 
@@ -53,10 +54,11 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+app.use("/admin", adminRoute);
 app.use(express.static(path.join(__dirname, "public")));
 // app.post("/:email", authController.signUp)
 // probably should just leave this for now.
-app.use("/admin", adminRoute);
+
 
 
 

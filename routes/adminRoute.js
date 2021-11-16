@@ -5,5 +5,6 @@ const { forwardAuthenticated, isAdmin } = require("../middleware/checkAuth");
 
 const router = express.Router();
 
-router.get("/", isAdmin, (req, res) => res.render("/"));
+router.get("/", isAdmin, (req, res) => res.send("Hello"));
 
+module.exports = router
