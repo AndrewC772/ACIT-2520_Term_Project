@@ -25,7 +25,7 @@ const userModel = {
         {
           id: profile.id,
           name: profile.username,
-          type: "User",
+          role: "user",
           reminders: []
         }
       )

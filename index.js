@@ -3,7 +3,6 @@ const app = express();
 const path = require("path");
 const session = require("express-session");
 const ejsLayouts = require("express-ejs-layouts");
-
 const passport = require("./middleware/passport");
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");

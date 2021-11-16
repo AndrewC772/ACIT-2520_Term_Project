@@ -44,7 +44,7 @@ let authController = {
       {
         id: new_database_id,
         name: "",
-        type: "User",
+        role: "user",
         email: req.body.email,
         password: req.body.password,
         reminders: []
