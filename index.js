@@ -3,12 +3,13 @@ const app = express();
 const path = require("path");
 const session = require("express-session");
 const ejsLayouts = require("express-ejs-layouts");
-const reminderController = require("./controller/reminder_controller");
-const authController = require("./controller/auth_controller");
+
 const passport = require("./middleware/passport");
+const authRoute = require("./routes/authRoute");
+const indexRoute = require("./routes/indexRoute");
 const { forwardAuthenticated, ensureAuthenticated } = require("./middleware/checkAuth")
 
-app.use(express.static(path.join(__dirname, "public")));
+
 
 app.set("view engine", "ejs");
 app.use(
@@ -33,42 +34,29 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+app.use((req, res, next) => {
+  next();
+});
+
 // Routes start here
 
 /* REALLY SHOULD PROBABLY DEFINITELY ADD THESE TO A ROUTES PAGE BUT TOO LAZY FOR NOW*/
-app.get("/reminders", ensureAuthenticated, reminderController.list);
-
-app.get("/reminder/new", ensureAuthenticated, reminderController.new);
-
-app.get("/reminder/:id", ensureAuthenticated, reminderController.listOne);
-
-app.get("/reminder/:id/edit", ensureAuthenticated, reminderController.edit);
-
-app.post("/reminder/", ensureAuthenticated, reminderController.create);
-
-// Implement this yourself
-app.post("/reminder/update/:id", ensureAuthenticated, reminderController.update);
-
-// Implement this yourself
-app.post("/reminder/delete/:id", ensureAuthenticated, reminderController.delete);
-
 // Fix this to work with passport! The registration does not need to work, you can use the fake database for this.
-app.get("/register", authController.register);
-app.get("/login", forwardAuthenticated,  authController.login);
-app.post("/login", authController.loginSubmit);
-app.post("/register", authController.registerSubmit);
+// app.get("/register", authController.register);
+// app.get("/login", forwardAuthenticated,  authController.login);
+// app.post("/login", authController.loginSubmit);
+// app.post("/register", authController.registerSubmit);
 // for testing have not implemented a button that will trigger this
-app.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/login")
-})
+// app.get("/logout", (req, res) => {
+//   req.logout();
+//   res.redirect("/login")
+// })
+
+app.use("/", indexRoute);
+app.use("/auth", authRoute);
+app.use(express.static(path.join(__dirname, "public")));
 // app.post("/:email", authController.signUp)
 // probably should just leave this for now.
-// app.get('/', (req, res) => {
-//   console.log(req.query.email)
-//   let email_entered = req.query.email
-//   res.send('id: ' + req.query.email);
-// });
 
 
 app.listen(3001, function () {

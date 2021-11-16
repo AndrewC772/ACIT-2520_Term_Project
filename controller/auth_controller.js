@@ -22,16 +22,19 @@ let authController = {
       successRedirect: "/reminders",
       failureRedirect: "/login",
     })(req, res);
+
+    // function next(res) {   
+      // console.log("next triggered")
+    // }
   },
 
   registerSubmit: (req, res) => {
     // implement
-    console.log(req.body)
-    let new_database_id = 1
-    for (let id of database) {
-      if (id >= new_database_id ){
-        console.log(id, new_database_id)
-        new_database_id = id + 1
+    // console.log(req.body)
+    let new_database_id = 0
+    for (existing_user of database) {
+      if (new_database_id <= existing_user.id){
+        new_database_id = existing_user.id + 1
       }
     }
     // if (userModel.findOne(req.body.email)) {
@@ -56,5 +59,7 @@ let authController = {
   //   res.render("auth/register")
   // },
 };
+
+
 
 module.exports = authController;
