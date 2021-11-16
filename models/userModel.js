@@ -15,6 +15,25 @@ const userModel = {
     }
     throw new Error(`Couldn't find user with id: ${id}`);
   },
+  findByIdGithub: (id, profile) => {
+    console.log(profile.id, profile.username, profile.site_admin)
+    let user = database.find((user) => user.id === id);
+    if (user) {
+      return user;
+    } else {
+      database.push(
+        {
+          id: profile.id,
+          name: profile.username,
+          type: "User",
+          reminders: []
+        }
+      )
+      console.log(database)
+      let user = database.find((user) => user.id === id);
+      return user
+    }
+  },
 };
 
 module.exports = { database, userModel };
