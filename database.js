@@ -26,7 +26,7 @@ let Database = [
   {
     id: 4,
     name: "test",
-    type: "Admin",
+    role: "Admin",
     email: "test@test",
     password: "test",
     reminders: [{id: 1, title: "test1", description: "test1", completed: false}, {id: 1, title: "test2", description: "test1", completed: true}]

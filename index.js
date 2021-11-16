@@ -56,6 +56,8 @@ app.use("/auth", authRoute);
 app.use(express.static(path.join(__dirname, "public")));
 // app.post("/:email", authController.signUp)
 // probably should just leave this for now.
+app.use("/admin", adminRoute);
+
 
 
 app.listen(3001, function () {

@@ -1,2 +1,4 @@
 node_modules
 .env
+CLIENT_ID=36b412e7c371d5b0f30b 
+CLIENT_SECRET=02eff6a4be836013bb154e94fa897eb0c783c7b7
