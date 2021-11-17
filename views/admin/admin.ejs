@@ -7,8 +7,7 @@
         <%  let session_object = sessions[session] %>
         <p>UserID: <%= session_object["passport"].user %></p>
         <form>
-            <input  name="SessionID" class="form-control"  formmethod="post">
-            <button type="SessionID" class="btn btn-primary" formmethod="post">Revoke Session</button>
+            <button name="Revoke" value="<%= session %>" class="btn btn-primary" formmethod="post">Revoke Session</button>
         </form>
     <% } %>
 </div>
