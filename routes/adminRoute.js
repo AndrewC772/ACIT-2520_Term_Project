@@ -14,7 +14,7 @@ router.get("/", isAdmin, (req, res) => {
                 user: req.user,
             });
         } else {
-            console.log([sessions])
+            // console.log([sessions])
             res.render("./admin/admin", {
                 user: req.user,
                 sessions: sessions,
@@ -23,7 +23,14 @@ router.get("/", isAdmin, (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    console.log(req.body)
+    console.log(req.body.SessionID)
+    req.sessionStore.destroy(req.body.SessionID, (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.redirect("/admin")
+        }
+    })
 })
 
 module.exports = router
