@@ -2,10 +2,13 @@
     <h1>Dashboard</h1>
     <p>Welcome <%= user.name %></p></br>
     <p>Current Active Sessions:</p>
-    <p> <%= sessions[0] %> </p>
-    <% for(i=0; i<sessions.length; i++) { %>
-        <p>123</p>
-        <p>SessionID: <%= sessions[i] %></p>
-        <p>UserID: <%= sessions[i][passport] %></p>
+    <% for (const session in sessions) { %>
+        <p>SessionID: <%= session %> </p>
+        <%  let session_object = sessions[session] %>
+        <p>UserID: <%= session_object["passport"].user %></p>
+        <form>
+            <input  name="SessionID" class="form-control"  formmethod="post">
+            <button type="SessionID" class="btn btn-primary" formmethod="post">Revoke Session</button>
+        </form>
     <% } %>
 </div>
