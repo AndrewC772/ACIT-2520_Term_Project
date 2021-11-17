@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("../middleware/passport");
-const authController = require("../controller/auth_controller");
-const { forwardAuthenticated, isAdmin } = require("../middleware/checkAuth");
+const userController = require("../controller/userController");
+const { isAdmin } = require("../middleware/checkAuth");
 const { Store } = require("express-session");
 
 const router = express.Router();
@@ -13,12 +13,16 @@ router.get("/", isAdmin, (req, res) => {
                 user: req.user,
             });
         } else {
-            console.log(sessions)
+            console.log([sessions])
             res.render("./admin/admin", {
                 user: req.user,
                 sessions: sessions,
             });
     }});
 });
+
+router.post("/", (req, res) => {
+    console.log(req.body)
+})
 
 module.exports = router
