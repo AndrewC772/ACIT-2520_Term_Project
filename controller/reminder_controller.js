@@ -3,7 +3,7 @@ const express = require("express");
 
 let remindersController = {
   list: (req, res) => {
-    res.render("reminder/index", { reminders: userController.getUserById(req.user.id).reminders });
+    res.render("reminder/index", { reminders: req.params.id.reminders });
   },
 
   new: (req, res) => {
@@ -12,30 +12,30 @@ let remindersController = {
 
   listOne: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = userController.getUserById(req.user.id).reminders.find(function (reminder) {
+    let searchResult = req.params.id.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     if (searchResult != undefined) {
       res.render("reminder/single-reminder", { reminderItem: searchResult });
     } else {
-      res.render("reminder/index", { reminders: userController.getUserById(req.user.id).reminders });
+      res.render("reminder/index", { reminders: req.params.id.reminders });
     }
   },
 
   create: (req, res) => {
     let reminder = {
-      id: userController.getUserById(req.user.id).reminders.length + 1,
+      id: req.params.id.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
     };
-    userController.getUserById(req.user.id).reminders.push(reminder);
+    req.params.id.reminders.push(reminder);
     res.redirect("/reminders");
   },
 
   edit: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = userController.getUserById(req.user.id).reminders.find(function (reminder) {
+    let searchResult = req.params.id.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     res.render("reminder/edit", { reminderItem: searchResult });
@@ -44,7 +44,7 @@ let remindersController = {
   update: (req, res) => {
     // implement this code
 	let reminderToFind = req.params.id
-	let searchResult = userController.getUserById(req.user.id).reminders.find(reminders => reminders.id == reminderToFind )
+	let searchResult = req.params.id.reminders.find(reminders => reminders.id == reminderToFind )
 	if (searchResult != undefined) {
 		searchResult.title = req.body.title
 		searchResult.description = req.body.description
@@ -63,10 +63,10 @@ let remindersController = {
   delete: (req, res) => {
     // Implement this code
 	let reminderToFind = req.params.id
-	let searchResult = userController.getUserById(req.user.id).reminders.find(reminders => reminders.id == reminderToFind )
+	let searchResult = req.params.id.reminders.find(reminders => reminders.id == reminderToFind )
 	if (searchResult != undefined) {
-		let Array_Postion = userController.getUserById(req.user.id).reminders.indexOf(searchResult)
-		userController.getUserById(req.user.id).reminders.splice(Array_Postion, 1)
+		let Array_Postion = req.params.id.reminders.indexOf(searchResult)
+		req.params.id.reminders.splice(Array_Postion, 1)
 		res.redirect("/reminders")
 	} else {
     console.log("Search failed")
