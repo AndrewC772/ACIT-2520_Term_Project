@@ -10,17 +10,15 @@ const router = express.Router();
 // and the next allows you to proceed with next() to res.render("login")
 router.get("/login", forwardAuthenticated, (req, res) => res.render("auth/login"));
 router.get("/register", forwardAuthenticated, (req, res) => res.render("auth/register"));
-router.get("/github", passport.authenticate("github"))
+router.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ] }));
 
-router.get(
-  "/github/callback",
-  // The "local" tells passport that we want to use local auth with email/password if you use "twitter" this would show a twitter login popup
-  passport.authenticate("github", { failureRedirect: '/login' }),
+router.get('/auth/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/auth/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/reminders');
-  }
-);
+  });
+
 
 router.post(
   "/login",
@@ -31,14 +29,14 @@ router.post(
   })
 );
 
-router.post(
-  "/github",
-  // The "local" tells passport that we want to use local auth with email/password if you use "twitter" this would show a twitter login popup
-  passport.authenticate("github", {
-    successRedirect: "/reminders",
-    failureRedirect: "/auth/login",
-  })
-);
+// router.post(
+//   "/github",
+//   // The "local" tells passport that we want to use local auth with email/password if you use "twitter" this would show a twitter login popup
+//   passport.authenticate("github", {
+//     successRedirect: "/reminders",
+//     failureRedirect: "/auth/login",
+//   })
+// );
 
 router.post(
   "/register",
