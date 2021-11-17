@@ -7,10 +7,18 @@ const { Store } = require("express-session");
 const router = express.Router();
 
 router.get("/", isAdmin, (req, res) => {
-    res.render("./admin/admin", {
-        user: req.user,
-        session: req.session
-    });
+    req.sessionStore.all((err, sessions) => {
+        if (err) {
+            res.render("./admin/admin", {
+                user: req.user,
+            });
+        } else {
+            console.log(sessions)
+            res.render("./admin/admin", {
+                user: req.user,
+                sessions: sessions,
+            });
+    }});
 });
 
 module.exports = router
