@@ -32,6 +32,15 @@ router.post(
 );
 
 router.post(
+  "/github",
+  // The "local" tells passport that we want to use local auth with email/password if you use "twitter" this would show a twitter login popup
+  passport.authenticate("github", {
+    successRedirect: "/reminders",
+    failureRedirect: "/auth/login",
+  })
+);
+
+router.post(
   "/register",
   // The "local" tells passport that we want to use local auth with email/password if you use "twitter" this would show a twitter login popup
   authController.registerSubmit
