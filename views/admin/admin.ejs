@@ -1,0 +1,10 @@
+<div>
+    <h1>Dashboard</h1>
+    <p>Welcome <%= user.name %></p></br>
+    <p>Current Active Sessions:</p>
+    <%= session.store %>
+    <% for(var i=0; i<session.length; i++) {%>
+    <p>SessionID: session.id</p>
+    <p>UserID: </p>
+    <%} %>
+</div>
