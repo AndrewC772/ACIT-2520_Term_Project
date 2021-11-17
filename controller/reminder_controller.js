@@ -24,7 +24,7 @@ let remindersController = {
 
   create: (req, res) => {
     let reminder = {
-      id: userController.getUserById(req.user.id).reminders.length + 1,
+      id: req.user.reminders.find(reminders => reminders.id == reminderToFind ).length + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
