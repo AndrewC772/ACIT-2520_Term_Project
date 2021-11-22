@@ -5,7 +5,8 @@ let Database = [
     role: "user",
     email: "jimmy123@gmail.com",
     password: "jimmy123!",
-    reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}, {id: 1, title: "test2", description: "test1", completed: true}]
+    reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}, {id: 1, title: "test2", description: "test1", completed: true}],
+    profile_pic: ""
   },
   {
     id: 2,
@@ -13,7 +14,8 @@ let Database = [
     role: "user",
     email: "johnny123@gmail.com",
     password: "johnny123!",
-    reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}]
+    reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}],
+    profile_pic: ""
   },
   {
     id: 3,
@@ -21,7 +23,8 @@ let Database = [
     role: "user",
     email: "jonathan123@gmail.com",
     password: "jonathan123!",
-    reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}]
+    reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}],
+    profile_pic: ""
   },
   {
     id: 4,
@@ -29,7 +32,8 @@ let Database = [
     role: "Admin",
     email: "test@test",
     password: "test",
-    reminders: [{id: 1, title: "test1", description: "test1", completed: false}, {id: 1, title: "test2", description: "test1", completed: true}]
+    reminders: [{id: 1, title: "test1", description: "test1", completed: false}, {id: 1, title: "test2", description: "test1", completed: true}],
+    profile_pic: ""
   }
 ]
 
