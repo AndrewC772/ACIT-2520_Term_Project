@@ -23,8 +23,11 @@ router.post("/uploads/", async (req, res) => {
     const file = req.files[0];
     try {
       const url = await imgur.uploadFile(`./uploads/${file.filename}`);
-      res.json({ message: url.data.link });
+      console.log(url)
+      res.json({ message: url.link });
+      req.user.profile_pic = `${url.link}`
       fs.unlinkSync(`./uploads/${file.filename}`);
+      console.log(req.user.profile_pic)
     } catch (error) {
       console.log("error", error);
     }
