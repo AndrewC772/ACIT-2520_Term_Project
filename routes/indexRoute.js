@@ -27,7 +27,6 @@ router.post("/uploads/", async (req, res) => {
       res.json({ message: url.link });
       req.user.profile_pic = `${url.link}`
       fs.unlinkSync(`./uploads/${file.filename}`);
-      console.log(req.user.profile_pic)
     } catch (error) {
       console.log("error", error);
     }
