@@ -22,7 +22,7 @@ let authController = {
     // console.log(userController.getUserByEmailIdAndPassword(req.body.email, req.body.password))
     passport.authenticate("local", {
       successRedirect: "/reminders",
-      failureRedirect: "/login",
+      failureRedirect: "/auth/login",
     })(req, res);
 
     // function next(res) {   

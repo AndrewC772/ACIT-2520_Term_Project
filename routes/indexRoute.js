@@ -15,7 +15,7 @@ router.get("/reminder/:id", ensureAuthenticated, reminderController.listOne);
 
 router.get("/reminder/:id/edit", ensureAuthenticated, reminderController.edit);
 
-router.get("/upload/", (req, res) => {
+router.get("/upload/", ensureAuthenticated, (req, res) => {
     res.render("upload/upload")
 })
 
@@ -23,11 +23,10 @@ router.post("/uploads/", async (req, res) => {
     const file = req.files[0];
     try {
       const url = await imgur.uploadFile(`./uploads/${file.filename}`);
-      console.log(url)
       res.json({ message: url.link });
-      req.user.profile_pic = `${url.link}`
+      req.user.profile_pic = `./uploads/${file.filename}`
       fs.unlinkSync(`./uploads/${file.filename}`);
-      console.log(req.user.profile_pic)
+      console.log("post upload", req.user)
     } catch (error) {
       console.log("error", error);
     }

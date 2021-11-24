@@ -1,4 +1,5 @@
 const database = require("../database")
+const request = require('request');
 
 const userModel = {
   findOne: (email) => {
@@ -21,17 +22,25 @@ const userModel = {
     if (user) {
       return user;
     } else {
-      database.push(
-        {
-          id: profile.id,
-          name: profile.username,
-          role: "user",
-          reminders: []
+      request('https://api.unsplash.com/photos/random/?client_id=6C3Sb8DdA3n2_vIhdEA_II_ENcwFrFhp3f7wG1acklk', { json: true }, (err, res1, random_image) => {
+        if (err) { 
+          return console.log(err); 
+        } else {
+          let profile_image = random_image.urls.thumb
+          database.push(
+            {
+              id: profile.id,
+              name: profile.username,
+              role: "user",
+              reminders: [],
+              profile_pic: profile_image
+            }
+          )
+          console.log(database)
+          let user = database.find((user) => user.id === id);
+          return user
         }
-      )
-      console.log(database)
-      let user = database.find((user) => user.id === id);
-      return user
+      })
     }
   },
 };

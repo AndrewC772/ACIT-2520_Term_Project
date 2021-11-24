@@ -10,12 +10,13 @@ const router = express.Router();
 // and the next allows you to proceed with next() to res.render("login")
 router.get("/login", forwardAuthenticated, (req, res) => res.render("auth/login"));
 router.get("/register", forwardAuthenticated, (req, res) => res.render("auth/register"));
+
 router.get("/github", passport.authenticate("github"))
 
 router.get(
   "/github/callback",
   // The "local" tells passport that we want to use local auth with email/password if you use "twitter" this would show a twitter login popup
-  passport.authenticate("github", { failureRedirect: '/login' }),
+  passport.authenticate("github", { failureRedirect: '/auth/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/reminders');
