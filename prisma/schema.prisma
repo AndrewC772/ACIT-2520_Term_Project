@@ -7,18 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  authorId  Int?
-  content   String?
+model Reminder {
   id        Int     @id @default(autoincrement())
-  published Boolean @default(false)
   title     String
+  description   String?
+  completed Boolean @default(false)
+  authorId  Int?
   author    User?   @relation(fields: [authorId], references: [id])
 }
 
 model User {
   email     String  @unique(map: "User.email")
   id        Int     @id @default(autoincrement())
-  name      String?
-  reminders Post[]
+  name      String
+  password  String
+  reminders Reminder[]
+  profile_pic String?
 }
