@@ -46,7 +46,7 @@ router.get("/logout", (req, res) => {
 
 module.exports = router;
 
-/* This crap isn't necessary if you use passport and can't fuck it up as bad */
+/* This isn't necessary if you use passport and can't mess it up as bad */
 
 // router.post("/login", (req, res) => {
 //   const email = req.body.email;
