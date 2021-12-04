@@ -14,6 +14,9 @@ const morgan = require("morgan");
 const multer = require("multer");
 const cors = require("cors");
 
+const {PrismaClient} = require('@prisma/client')
+
+const prisma = new PrismaClient()
 
 app.set("view engine", "ejs");
 app.use(

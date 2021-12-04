@@ -54,6 +54,22 @@ let authController = {
             profile_pic: profile_image
           }
         )
+        pass_in = req.body
+        async (pass_in, profile_image, new_database_id) => {
+          const body = {
+            id: new_database_id,
+            name: "",
+            email: pass_in.email,
+            password: pass_in.password,
+            profile_pic: profile_image };
+          const existingUser = await prisma.user.findUnique({ where: { id }})
+          if (existingUser) {
+              res.json({ Error: "User already exists "})
+          } else {
+              const createdUser = await prisma.user.create({ data: body})
+              res.json(createdUser)
+          }
+      }
         res.redirect("/reminders")
         console.log(database)
       }

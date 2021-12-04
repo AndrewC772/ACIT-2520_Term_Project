@@ -8,19 +8,17 @@ datasource db {
 }
 
 model Reminder {
-  id        Int     @id @default(autoincrement())
-  title     String
-  description   String?
-  completed Boolean @default(false)
-  authorId  Int?
-  author    User?   @relation(fields: [authorId], references: [id])
+  description String?
+  id          Int     @id @default(autoincrement())
+  completed   Boolean @default(false)
+  title       String
+  authorId    Int?
 }
 
 model User {
-  email     String  @unique(map: "User.email")
-  id        Int     @id @default(autoincrement())
-  name      String
-  password  String
-  reminders Reminder[]
+  email       String  @unique
+  id          Int     @id @default(autoincrement())
+  name        String?
+  password    String?
   profile_pic String?
 }

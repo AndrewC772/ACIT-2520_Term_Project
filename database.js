@@ -1,3 +1,22 @@
+const {PrismaClient} = require("@prisma/client");
+const prisma = new PrismaClient();
+
+// database = prisma.user.findMany()
+
+// const database = database_setup()
+// .then((data) => {
+//   console.log(data)
+//   return data
+// })
+
+
+// async function database_setup() {
+//   const users = await prisma.user.findMany()
+//   return users
+// }
+
+//MOVED TO THE userModel.js
+
 let Database = [  
     {
     id: 1,
