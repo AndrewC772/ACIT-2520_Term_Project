@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const reminderController = require("../controller/reminder_controller");
 const { ensureAuthenticated, isAdmin } = require("../middleware/checkAuth");
-
+const imgur = require("imgur");
+const fs = require("fs");
 
 // ensureAuthenticated is a middleware function that will check whether
 // or not you are logged in and if so you can show
@@ -13,6 +14,21 @@ router.get("/reminder/new", ensureAuthenticated, reminderController.new);
 router.get("/reminder/:id", ensureAuthenticated, reminderController.listOne);
 
 router.get("/reminder/:id/edit", ensureAuthenticated, reminderController.edit);
+
+router.get("/upload/", (req, res) => {
+    res.render("upload/upload")
+})
+
+router.post("/uploads/", async (req, res) => {
+    const file = req.files[0];
+    try {
+      const url = await imgur.uploadFile(`./uploads/${file.filename}`);
+      res.json({ message: url.data.link });
+      fs.unlinkSync(`./uploads/${file.filename}`);
+    } catch (error) {
+      console.log("error", error);
+    }
+  });
 
 router.post("/reminder/", ensureAuthenticated, reminderController.create);
 
