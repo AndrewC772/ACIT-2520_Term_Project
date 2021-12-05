@@ -7,6 +7,7 @@ const passport = require("./middleware/passport");
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
 const { forwardAuthenticated, ensureAuthenticated } = require("./middleware/checkAuth")
+const adminRoute = require("./routes/adminRoute");
 
 
 
