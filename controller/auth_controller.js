@@ -30,30 +30,32 @@ let authController = {
 
   registerSubmit: (req, res) => {
     // implement
-    // console.log(req.body)
     let new_database_id = 0
     for (existing_user of database) {
       if (new_database_id <= existing_user.id){
         new_database_id = existing_user.id + 1
       }
     }
-    // if (userModel.findOne(req.body.email)) {
-    //     console.log("This email already exists")
-    // }
-    database.push(
-      {
-        id: new_database_id,
-        name: "",
-        role: "user",
-        email: req.body.email,
-        password: req.body.password,
-        reminders: []
+    request('https://api.unsplash.com/photos/random/?client_id=6C3Sb8DdA3n2_vIhdEA_II_ENcwFrFhp3f7wG1acklk', { json: true }, (err, res1, random_image) => {
+      if (err) { 
+        return console.log(err); 
+      } else {
+        let profile_image = random_image.urls.thumb
+        database.push(
+          {
+            id: new_database_id,
+            name: "",
+            role: "user",
+            email: req.body.email,
+            password: req.body.password,
+            reminders: [],
+            profile_pic: profile_image
+          }
+        )
+        res.redirect("/reminders")
+        console.log(database)
       }
-    )
-    res.redirect("/reminders")
-    console.log(database)
-    // if (userModel.findOne(req.body.email) == )
-  },
+    });
   
   // signUp: (req, res) => {
   //   console.log(req.params.id)
