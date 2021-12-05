@@ -54,6 +54,7 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
+app.use("/admin", adminRoute);
 app.use(express.static(path.join(__dirname, "public")));
 // app.post("/:email", authController.signUp)
 // probably should just leave this for now.
