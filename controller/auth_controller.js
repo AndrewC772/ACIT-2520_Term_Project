@@ -56,7 +56,7 @@ let authController = {
         console.log(database)
       }
     });
-  
+  },
   // signUp: (req, res) => {
   //   console.log(req.params.id)
   //   res.render("auth/register")
