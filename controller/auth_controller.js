@@ -3,6 +3,8 @@ const { ensureAuthenticated, forwardAuthenticated } = require("../middleware/che
 const passport = require("../middleware/passport");
 let userController = require("./userController")
 let userModel = require("../models/userModel")
+const request = require('request');
+const https = require('https');
 
 let authController = {
   login: (req, res) => {
@@ -20,7 +22,7 @@ let authController = {
     // console.log(userController.getUserByEmailIdAndPassword(req.body.email, req.body.password))
     passport.authenticate("local", {
       successRedirect: "/reminders",
-      failureRedirect: "/login",
+      failureRedirect: "/auth/login",
     })(req, res);
 
     // function next(res) {   
@@ -56,7 +58,10 @@ let authController = {
         console.log(database)
       }
     });
+
+    // if (userModel.findOne(req.body.email) == )
   },
+  
   // signUp: (req, res) => {
   //   console.log(req.params.id)
   //   res.render("auth/register")
